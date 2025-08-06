@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'export',  // Enable static exports
+  basePath: process.env.NODE_ENV === 'production' ? '/SynapseIQ-' : '',  // Set base path for GitHub Pages
   images: {
+    unoptimized: true,  // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
