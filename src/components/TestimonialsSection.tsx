@@ -42,7 +42,7 @@ const TestimonialsSection: React.FC = () => {
     setIsLoading(true);
     try {
       // Use the API to fetch testimonials with pagination
-      const url = `${apiUrl}/testimonials?featured_only=true&limit=${limit}&offset=${currentOffset}`;
+      const url = `${apiUrl}/testimonials/?featured_only=true&limit=${limit}&offset=${currentOffset}`;
       console.log('DEBUG - Fetching testimonials from:', url);
       
       const response = await fetch(url, {
@@ -93,7 +93,7 @@ const TestimonialsSection: React.FC = () => {
     const loadInitialTestimonials = async () => {
       try {
         // Fetch all testimonials by setting a high limit
-        const url = `${apiUrl}/testimonials?featured_only=true&limit=1000&offset=0`;
+        const url = `${apiUrl}/testimonials/?featured_only=true&limit=1000&offset=0`;
         console.log('DEBUG - Initial fetch from:', url);
         
         const response = await fetch(url, {
@@ -106,22 +106,18 @@ const TestimonialsSection: React.FC = () => {
           throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
         
-        const data = await response.json();
+        const fetchedTestimonials = await response.json();
         
-        // The API now returns an object with testimonials and metadata
-        const { testimonials: fetchedTestimonials, metadata } = data;
-        
-        console.log(`DEBUG - Initial load: ${fetchedTestimonials.length} testimonials out of ${metadata.total_count} total`);
-        console.log('DEBUG - Metadata:', metadata);
+        console.log(`DEBUG - Initial load: ${fetchedTestimonials.length} testimonials loaded`);
         
         // Set initial testimonials
         setTestimonials(fetchedTestimonials);
         
-        // Update total count from metadata
-        setTotalTestimonials(metadata.total_count);
+        // Update total count
+        setTotalTestimonials(fetchedTestimonials.length);
         
-        // If we've loaded all testimonials, set hasMoreToLoad to false
-        setHasMoreToLoad(metadata.has_more);
+        // Since we're loading all testimonials at once, there are no more to load
+        setHasMoreToLoad(false);
         
         // Reset pagination state
         setOffset(0);
@@ -129,6 +125,7 @@ const TestimonialsSection: React.FC = () => {
         setIsLoading(false);
       } catch (err) {
         console.error('Failed to load initial testimonials:', err);
+        console.error('Error details:', JSON.stringify(err, null, 2));
         setError('Failed to load testimonials. Please try again later.');
         setIsLoading(false);
       }
@@ -166,7 +163,7 @@ const TestimonialsSection: React.FC = () => {
       console.log('DEBUG - Total testimonials:', totalTestimonials);
       
       // Make the API call directly here instead of using fetchTestimonials
-      const url = `${apiUrl}/testimonials?featured_only=true&limit=${fetchLimit}&offset=${newOffset}`;
+      const url = `${apiUrl}/testimonials/?featured_only=true&limit=${fetchLimit}&offset=${newOffset}`;
       console.log('DEBUG - Direct API call to:', url);
       
       const response = await fetch(url, {
@@ -179,11 +176,9 @@ const TestimonialsSection: React.FC = () => {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
       
-      const data = await response.json();
-      const { testimonials: newTestimonials, metadata } = data;
+      const newTestimonials = await response.json();
       
       console.log(`DEBUG - Received ${newTestimonials.length} new testimonials`);
-      console.log('DEBUG - Updated metadata:', metadata);
       
       // Update testimonials by appending the new data
       setTestimonials(prevTestimonials => {
@@ -192,11 +187,11 @@ const TestimonialsSection: React.FC = () => {
         return updatedTestimonials;
       });
       
-      // Update total count from metadata (in case it changed)
-      setTotalTestimonials(metadata.total_count);
+      // Update total count
+      setTotalTestimonials(prev => prev + newTestimonials.length);
       
-      // Update has more flag from metadata
-      setHasMoreToLoad(metadata.has_more);
+      // If we received fewer testimonials than requested, there are no more to load
+      setHasMoreToLoad(newTestimonials.length === fetchLimit);
       
       // Update offset for next load
       setOffset(newOffset + newTestimonials.length);
