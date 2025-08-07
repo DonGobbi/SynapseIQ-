@@ -3,9 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   output: 'export',  // Enable static exports
-  // Use assetPrefix for GitHub Pages
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/SynapseIQ-' : '',
+  // Use basePath and assetPrefix for GitHub Pages
   basePath: process.env.NODE_ENV === 'production' ? '/SynapseIQ-' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/SynapseIQ-' : '',
+  trailingSlash: true, // This helps with GitHub Pages routing
   images: {
     unoptimized: true,  // Required for static export
     remotePatterns: [
@@ -21,6 +22,10 @@ const nextConfig = {
         pathname: '/**',
       }
     ],
+  },
+  // Ensure environment variables are properly handled
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://synapseiq-api.onrender.com',
   },
 };
 
