@@ -52,7 +52,7 @@ const Header = () => {
           <Link href="/accessibility" className={`font-medium transition-colors ${pathname === '/accessibility' ? 'text-primary font-bold' : 'text-gray-800 hover:text-primary'}`}>
             Accessibility
           </Link>
-          <Link href="/admin" className={`font-medium transition-colors ${pathname === '/admin' || pathname.startsWith('/admin/') ? 'text-primary font-bold' : 'text-gray-800 hover:text-primary'}`}>
+          <Link href="/admin" className={`font-medium transition-colors ${pathname === '/admin' || (pathname && pathname.startsWith('/admin/')) ? 'text-primary font-bold' : 'text-gray-800 hover:text-primary'}`}>
             Admin
           </Link>
         </nav>
@@ -115,7 +115,7 @@ const Header = () => {
             </Link>
             <Link 
               href="/admin" 
-              className={`font-medium transition-colors ${pathname === '/admin' || pathname.startsWith('/admin/') ? 'text-primary font-bold' : 'text-gray-800 hover:text-primary'}`}
+              className={`font-medium transition-colors ${pathname === '/admin' || (pathname && pathname.startsWith('/admin/')) ? 'text-primary font-bold' : 'text-gray-800 hover:text-primary'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Admin

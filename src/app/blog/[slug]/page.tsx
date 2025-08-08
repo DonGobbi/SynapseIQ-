@@ -11,6 +11,8 @@ import Footer from '../../../components/Footer';
 import PageTransition from '../../../components/PageTransition';
 import StyledMarkdown from '../../../components/StyledMarkdown';
 
+// Static params will be defined in a separate file
+
 interface BlogPost {
   id: number;
   title: string;
@@ -28,7 +30,8 @@ interface BlogPost {
 }
 
 export default function BlogPostPage() {
-  const { slug } = useParams();
+  const params = useParams();
+  const slug = params?.slug as string;
   const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

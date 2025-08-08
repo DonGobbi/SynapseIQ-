@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',  // Enable static exports
+  // Changing from 'export' to 'standalone' to avoid static export issues with dynamic routes
+  output: 'standalone',
   // Use basePath and assetPrefix for GitHub Pages
   basePath: process.env.NODE_ENV === 'production' ? '/SynapseIQ-' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/SynapseIQ-' : '',
