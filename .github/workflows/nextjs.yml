@@ -77,10 +77,15 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
           NODE_ENV: production
+      - name: Create .nojekyll file
+        run: |
+          touch ./out/.nojekyll
+          echo "Creating .nojekyll file and checking output directory"
+          ls -la ./out
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./.next/standalone
+          path: ./out
 
   # Deployment job
   deploy:

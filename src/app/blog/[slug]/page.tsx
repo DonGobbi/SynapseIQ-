@@ -1,5 +1,4 @@
-'use client';
-
+import BlogPostContent from './components/BlogPostContent';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
@@ -12,7 +11,6 @@ import PageTransition from '../../../components/PageTransition';
 import StyledMarkdown from '../../../components/StyledMarkdown';
 
 // Static params will be defined in a separate file
-
 interface BlogPost {
   id: number;
   title: string;
@@ -82,81 +80,7 @@ export default function BlogPostPage() {
       publishedAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
-    'multilingual-chatbots-african-business': {
-      id: 2,
-      title: "Multilingual Chatbots: Bridging Language Barriers in African Business",
-      slug: "multilingual-chatbots-african-business",
-      excerpt: "How AI-powered chatbots that support local languages are transforming customer service across diverse African markets.",
-      content: "# Multilingual Chatbots: Bridging Language Barriers in African Business\n\n## The Language Challenge in African Business\n\nWith over 2,000 languages spoken across the continent, language barriers represent a significant challenge for businesses operating in Africa. Traditional customer service approaches often fail to accommodate this linguistic diversity, leading to exclusion and missed opportunities.\n\n## The Rise of Multilingual AI Solutions\n\nAdvances in natural language processing (NLP) are making it possible to develop chatbots that can understand and respond in multiple African languages. These systems are helping businesses reach customers in their preferred language, building trust and improving engagement.\n\n## Implementation Success Stories\n\n### Banking Sector\n\nA major East African bank implemented a chatbot that supports Swahili, Amharic, English, and French, allowing customers to check balances, transfer money, and resolve common issues in their language of choice. Customer satisfaction scores increased by 45% within three months of deployment.\n\n### Telecommunications\n\nA pan-African telecom provider deployed a WhatsApp-based assistant that handles customer inquiries in 12 languages, including Yoruba, Zulu, Chichewa, and Lingala. The system now handles over 60% of all customer interactions, significantly reducing call center volume.\n\n### E-commerce\n\nAn online marketplace serving West Africa integrated a multilingual chatbot to help customers navigate products, track orders, and process returns in local languages. This led to a 30% increase in conversion rates among non-English speaking users.\n\n## Technical Approaches\n\n### Transfer Learning\n\nBy leveraging transfer learning techniques, developers can adapt large language models trained primarily on high-resource languages to work effectively with African languages that have less training data available.\n\n### Hybrid Models\n\nCombining rule-based systems with machine learning allows chatbots to handle the unique grammatical structures and contextual nuances of African languages more effectively.\n\n### Community Involvement\n\nSome of the most successful implementations have involved local language speakers in the development and training process, ensuring cultural relevance and linguistic accuracy.\n\n## Looking Ahead\n\nAs NLP capabilities continue to improve for African languages, we can expect to see even more sophisticated applications emerge. The future of customer service in Africa will likely be increasingly automated yet paradoxically more personal, as businesses can engage with customers in their mother tongue at scale.",
-      author: "David Mensah",
-      authorRole: "NLP Specialist",
-      category: "Chatbots",
-      tags: ["NLP", "Chatbots", "Languages", "Customer Service"],
-      featuredImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      published: true,
-      publishedAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    },
-    'data-privacy-ai-ethics-african-contexts': {
-      id: 3,
-      title: "Data Privacy and AI Ethics in African Contexts",
-      slug: "data-privacy-ai-ethics-african-contexts",
-      excerpt: "Exploring the unique challenges and opportunities in implementing ethical AI practices while respecting data privacy in African markets.",
-      content: "# Data Privacy and AI Ethics in African Contexts\n\n## The Unique Landscape of Data Governance in Africa\n\nAs artificial intelligence transforms industries across Africa, questions of data privacy, ownership, and ethical use are becoming increasingly important. The continent presents unique considerations that differ from Western contexts, requiring thoughtful approaches to AI governance.\n\n## Current Regulatory Frameworks\n\nAfrican data protection regulations vary significantly by country:\n\n- **South Africa's POPIA** (Protection of Personal Information Act) represents one of the most comprehensive frameworks, similar to Europe's GDPR.\n- **Kenya's Data Protection Act** established a dedicated commissioner to oversee compliance.\n- **Nigeria's NDPR** (Nigeria Data Protection Regulation) focuses on consent and lawful processing.\n- Many countries are still developing their regulatory approaches, creating a complex patchwork for organizations operating across borders.\n\n## Cultural Dimensions of Data Privacy\n\nWestern concepts of individual data ownership don't always translate directly to African contexts, where communal approaches to information sharing may be more culturally aligned. AI ethics frameworks must consider these nuances rather than simply importing Western standards.\n\n## Practical Challenges\n\n### Informed Consent\n\nLow digital literacy rates in some regions make traditional informed consent models problematic. Innovative approaches using visual explanations and voice-based systems are showing promise.\n\n### Algorithmic Bias\n\nAI systems trained primarily on Western data often perform poorly when deployed in African contexts. Organizations are working to develop more representative training datasets and validation processes.\n\n### Data Sovereignty\n\nQuestions about where data is stored, who has access to it, and how it benefits local communities are central to ethical AI deployment in Africa.\n\n## Emerging Best Practices\n\n### Community Engagement\n\nInvolving local communities in decisions about data collection and AI applications helps ensure solutions are culturally appropriate and beneficial.\n\n### Transparency\n\nClear communication about how AI systems work, what data they use, and how decisions are made builds trust with users.\n\n### Capacity Building\n\nInvesting in local expertise ensures that Africans lead the conversation about appropriate AI use in their own contexts.\n\n## The Path Forward\n\nEthical AI in Africa requires balancing innovation with protection, respecting cultural contexts while upholding fundamental rights. By developing frameworks that center African perspectives and priorities, the continent has an opportunity to chart its own course in responsible AI development.",
-      author: "Nala Diallo",
-      authorRole: "AI Ethics Researcher",
-      category: "Ethics",
-      tags: ["Ethics", "Data Privacy", "Regulations", "Governance"],
-      featuredImage: "https://images.unsplash.com/photo-1493723843671-1d655e66ac1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      published: true,
-      publishedAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    },
-    'ai-powered-agriculture-boosting-crop-yields': {
-      id: 4,
-      title: "AI-Powered Agriculture: Boosting Crop Yields Across Africa",
-      slug: "ai-powered-agriculture-boosting-crop-yields",
-      excerpt: "How machine learning and IoT sensors are helping farmers across the continent optimize irrigation, predict weather patterns, and increase productivity.",
-      content: "# AI-Powered Agriculture: Boosting Crop Yields Across Africa\n\nContent coming soon...",
-      author: "Emmanuel Osei",
-      authorRole: "AgriTech Specialist",
-      category: "Agriculture",
-      tags: ["Agriculture", "IoT", "Machine Learning", "Sustainability"],
-      featuredImage: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      published: true,
-      publishedAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    },
-    'building-ai-solutions-limited-data-african-startups': {
-      id: 5,
-      title: "Building AI Solutions with Limited Data: Strategies for African Startups",
-      slug: "building-ai-solutions-limited-data-african-startups",
-      excerpt: "Practical approaches for developing effective AI models when working with small datasets - a common challenge for African tech startups.",
-      content: "# Building AI Solutions with Limited Data: Strategies for African Startups\n\nContent coming soon...",
-      author: "Zainab Mwangi",
-      authorRole: "Data Science Lead",
-      category: "Startups",
-      tags: ["Startups", "Data Science", "Small Data", "Innovation"],
-      featuredImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      published: true,
-      publishedAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    },
-    'rise-of-mobile-ai-applications-africa': {
-      id: 6,
-      title: "The Rise of Mobile AI: Applications for Africa's Mobile-First Economy",
-      slug: "rise-of-mobile-ai-applications-africa",
-      excerpt: "How lightweight AI models are being deployed on mobile devices to solve uniquely African challenges in regions with limited connectivity.",
-      content: "# The Rise of Mobile AI: Applications for Africa's Mobile-First Economy\n\nContent coming soon...",
-      author: "Thabo Ndlovu",
-      authorRole: "Mobile AI Developer",
-      category: "Mobile",
-      tags: ["Mobile", "Edge AI", "Connectivity", "Innovation"],
-      featuredImage: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      published: true,
-      publishedAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    }
+    // Other sample blog posts...
   };
 
   // Sample related posts for each slug
@@ -165,47 +89,28 @@ export default function BlogPostPage() {
       sampleBlogPosts['data-privacy-ai-ethics-african-contexts'],
       sampleBlogPosts['building-ai-solutions-limited-data-african-startups']
     ],
-    'multilingual-chatbots-african-business': [
-      sampleBlogPosts['rise-of-mobile-ai-applications-africa'],
-      sampleBlogPosts['ai-adoption-trends-african-financial-services']
-    ],
-    'data-privacy-ai-ethics-african-contexts': [
-      sampleBlogPosts['ai-adoption-trends-african-financial-services'],
-      sampleBlogPosts['multilingual-chatbots-african-business']
-    ],
-    'ai-powered-agriculture-boosting-crop-yields': [
-      sampleBlogPosts['building-ai-solutions-limited-data-african-startups'],
-      sampleBlogPosts['data-privacy-ai-ethics-african-contexts']
-    ],
-    'building-ai-solutions-limited-data-african-startups': [
-      sampleBlogPosts['ai-adoption-trends-african-financial-services'],
-      sampleBlogPosts['rise-of-mobile-ai-applications-africa']
-    ],
-    'rise-of-mobile-ai-applications-africa': [
-      sampleBlogPosts['multilingual-chatbots-african-business'],
-      sampleBlogPosts['building-ai-solutions-limited-data-african-startups']
-    ]
+    // Other related posts...
   };
 
   // Fetch blog post by slug
   useEffect(() => {
     const fetchBlogPost = async () => {
       if (!slug) return;
-      
+
       try {
         setLoading(true);
         setError(null);
-        
+
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         const response = await fetch(`${apiUrl}/blog/posts/slug/${slug}`);
-        
+
         if (!response.ok) {
           throw new Error(`Failed to fetch blog post: ${response.statusText}`);
         }
-        
+
         const data = await response.json();
         setBlogPost(data);
-        
+
         // Fetch related posts (same category or shared tags)
         if (data) {
           const relatedResponse = await fetch(`${apiUrl}/blog/posts?category=${data.category}&published=true&limit=3`);
@@ -220,7 +125,7 @@ export default function BlogPostPage() {
         }
       } catch (err) {
         console.error('Error fetching blog post:', err);
-        
+
         // Use sample data if API fails
         if (typeof slug === 'string' && sampleBlogPosts[slug]) {
           console.log('Using sample blog post data instead');
@@ -262,7 +167,6 @@ export default function BlogPostPage() {
                 </div>
               </div>
             )}
-
             {/* Error State */}
             {!loading && error && (
               <div className="max-w-3xl mx-auto">
@@ -273,7 +177,7 @@ export default function BlogPostPage() {
                   <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-white">Error Loading Blog Post</h3>
                   <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{error}</p>
                   <div className="mt-6">
-                    <Link 
+                    <Link
                       href="/blog"
                       className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
                     >
@@ -284,10 +188,9 @@ export default function BlogPostPage() {
                 </div>
               </div>
             )}
-
             {/* Blog Post Content */}
             {!loading && !error && blogPost && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -295,7 +198,7 @@ export default function BlogPostPage() {
               >
                 {/* Back to Blog Link */}
                 <div className="mb-6">
-                  <Link 
+                  <Link
                     href="/blog"
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                   >
@@ -303,7 +206,6 @@ export default function BlogPostPage() {
                     Back to Blog
                   </Link>
                 </div>
-
                 {/* Featured Image */}
                 {blogPost.featuredImage && (
                   <div className="relative h-64 md:h-96 w-full mb-6 rounded-lg overflow-hidden">
@@ -317,14 +219,12 @@ export default function BlogPostPage() {
                     />
                   </div>
                 )}
-
                 {/* Post Header */}
                 <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
                   <div className="p-8">
                     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                       {blogPost.title}
                     </h1>
-
                     <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6">
                       <div className="flex items-center">
                         <FaCalendarAlt className="mr-1" />
@@ -338,7 +238,6 @@ export default function BlogPostPage() {
                         {blogPost.category}
                       </div>
                     </div>
-
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {blogPost.tags.map((tag, idx) => (
@@ -351,12 +250,10 @@ export default function BlogPostPage() {
                         </span>
                       ))}
                     </div>
-
                     {/* Post Content */}
                     <div className="prose prose-lg max-w-none dark:prose-invert">
                       <StyledMarkdown content={blogPost.content} />
                     </div>
-
                     {/* Share Button */}
                     <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
                       <button
@@ -369,7 +266,6 @@ export default function BlogPostPage() {
                     </div>
                   </div>
                 </div>
-
                 {/* Related Posts */}
                 {relatedPosts.length > 0 && (
                   <div className="mt-12">
